@@ -10,11 +10,11 @@ token = "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"
 repo = git.Repo("/Users/gilbert/workspace/staika/deploy-giqajay")
 
 # origin을 토큰을 이용한 권한으로 설정
-origins = repo.remote(name='origin')
-print(origins.url)
+origin = repo.remote(name='origin')
+print(origin.url)
 
 origin_url = git_url.replace("https://", f"https://{token}@")
-origins.set_url(origin_url)
+origin.set_url(origin_url)
 
 while True:
     try:
