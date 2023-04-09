@@ -10,12 +10,12 @@ github_token = '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'
 commit_message = "Deploy commit"
 file_content = "Deploy, a word "
 file_path = "bot.py"
-repo_owner = "Gilbert-EZ"
+repo_owner = "stik-proj"
 repo_name = "deploy-giqajay"
 branch_name = "main"
 
 # GitHub API URL
-github_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+github_api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
 
 vowels = 'aeiou'
 consonants = 'bcdfghjklmnpqrstvwxyz'
@@ -43,7 +43,7 @@ while True:
         current_content = response.json()["content"]
         current_sha = response.json()["sha"]
     else:
-        print("Failed to get current file content.")
+        print("Failed to get current file content. " + github_api_url)
         break
 
     # 새로운 커밋 내용 작성
