@@ -13,8 +13,8 @@ repo = git.Repo("/Users/gilbert/workspace/staika/deploy-giqajay")
 origin = repo.remote(name='origin')
 print(origin.url)
 
-origin_url = git_url.replace("https://", f"https://{token}@")
-origin.set_url(origin_url)
+#origin_url = git_url.replace("https://", f"https://{token}@")
+#origin.set_url(origin_url)
 
 while True:
     try:
