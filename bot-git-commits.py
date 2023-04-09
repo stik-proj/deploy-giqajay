@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from git import Repo, GitCommandError
+import time
 
 # 깃 저장소 경로
 repo_path = "/Users/gilbert/workspace/staika/deploy-giqajay"
@@ -30,8 +31,9 @@ while True:
 
         # 깃헙으로 변경 내용을 푸시
         origin = repo.remote(name="origin")
-        url = origin.url.replace("https://", f"https://{access_token}@")
-        origin.url = url
+        print(origin.url)
+        url = "https://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@github.com/stik-proj/deploy-giqajay.git"
+        origin.set_url(url)
         origin.push()
 
     except GitCommandError as e:

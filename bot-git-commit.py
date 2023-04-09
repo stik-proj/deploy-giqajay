@@ -15,11 +15,10 @@ repo_name = "deploy-giqajay"
 branch_name = "main"
 
 # GitHub API URL
-github_api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
+github_api_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/{file_path}'
 
 vowels = 'aeiou'
 consonants = 'bcdfghjklmnpqrstvwxyz'
-
 
 def generate_word():
     word = ''
