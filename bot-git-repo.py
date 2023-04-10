@@ -13,16 +13,12 @@ repo_name_prefix = 'deploy'
 repo_description = 'Project '
 
 # 랜덤 문자열 생성 함수
-
-
 def generate_random_string(length):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(length))
 
-
 vowels = 'aeiou'
 consonants = 'bcdfghjklmnpqrstvwxyz'
-
 
 def generate_word():
     word = ''

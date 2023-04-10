@@ -1,37 +1,36 @@
-import os
 import git
+from github import Github
+from datetime import datetime, timedelta
 import time
 
-# 깃허브 레포지토리의 URL과 토큰 설정
-git_url = "https://github.com/stik-proj/deploy-giqajay.git"
-token = "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"
+# 깃허브 엑세스 토큰
+access_token = "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"
 
-# git 레포지토리
-repo = git.Repo("/Users/gilbert/workspace/staika/deploy-giqajay")
+# 깃허브 레포지토리 정보
+repo_owner = "stik-proj"
+repo_name = "deploy-giqajay"
 
-# origin을 토큰을 이용한 권한으로 설정
-origin = repo.remote(name='origin')
-print(origin.url)
+# 레포지토리 클론
+local_repo_path = "/Users/gilbert/workspace/staika/deploy-test"
+git.Repo.clone_from(f"https://github.com/{repo_owner}/{repo_name}.git", local_repo_path)
 
-#origin_url = git_url.replace("https://", f"https://{token}@")
-#origin.set_url(origin_url)
+# 깃허브 API 인증
+g = Github(access_token)
 
+# 레포지토리 객체 생성
+repo = g.get_repo(f"{repo_owner}/{repo_name}")
+
+# 5분마다 커밋
 while True:
-    try:
-        # 변경 내용 추가
-        repo.index.add("*")
+    # 파일 수정
+    with open(f"{local_repo_path}/example.txt", "a") as f:
+        f.write("Committing every 5 minutes\n")
 
-        # 커밋 메시지 설정
-        commit_message = "Auto commit at " + time.strftime('%Y-%m-%d %H:%M:%S')
-
-        # 커밋 생성
-        repo.index.commit(commit_message)
-
-        # 깃허브 레포지토리로 push
-        origin.push()
-        print(f"Committed successfully at {time.strftime('%Y-%m-%d %H:%M:%S')}")
-    except Exception as e:
-        print(f"Commit failed at {time.strftime('%Y-%m-%d %H:%M:%S')}: {e}")
+    # 커밋
+    repo.git.add(".")
+    repo.git.commit("-m", "Automatic commit by Python script")
+    origin = repo.remote(name="origin")
+    origin.push()
 
     # 5분 대기
     time.sleep(300)
