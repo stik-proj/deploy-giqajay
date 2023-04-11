@@ -19,7 +19,6 @@ def generate_random_string(length):
 
 vowels = 'aeiou'
 consonants = 'bcdfghjklmnpqrstvwxyz'
-
 def generate_word():
     word = ''
     length = random.randint(4, 8)  # 단어 길이는 4~8자리로 설정
